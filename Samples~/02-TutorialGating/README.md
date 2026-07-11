@@ -7,7 +7,7 @@ moving which tag is *excluded*.
 ## Run it
 1. Add **TutorialGatingDemo** to an empty GameObject in a new scene.
 2. Press Play. Only the highlighted step's button is interactable; press it to advance.
-3. Watch the locks shift in **Kobapps ▸ Input Lock ▸ Debugger**.
+3. Watch the locks shift in **Tools ▸ Input Lock ▸ Debugger**.
 
 ## Key idea
 ```csharp

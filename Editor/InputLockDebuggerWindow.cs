@@ -131,7 +131,7 @@ namespace Kobapps.InputLockKit.Editor
             }
         }
 
-        [MenuItem("Kobapps/Input Lock/Debugger", priority = 0)]
+        [MenuItem("Tools/Input Lock/Debugger", priority = 0)]
         private static void Open()
         {
             var window = GetWindow<InputLockDebuggerWindow>();
@@ -352,6 +352,11 @@ namespace Kobapps.InputLockKit.Editor
                 GUILayout.Space(6f);
                 _onlyLocked = GUILayout.Toggle(_onlyLocked, "Locked only", EditorStyles.toolbarButton,
                     GUILayout.Width(84f));
+
+                if (GUILayout.Button("Settings", EditorStyles.toolbarButton, GUILayout.Width(64f)))
+                {
+                    SettingsService.OpenProjectSettings(InputLockSettingsProvider.Path);
+                }
 
                 GUILayout.FlexibleSpace();
                 _search = GUILayout.TextField(_search, EditorStyles.toolbarSearchField, GUILayout.MinWidth(90f));

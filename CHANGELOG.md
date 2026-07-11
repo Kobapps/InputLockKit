@@ -3,6 +3,32 @@
 All notable changes to InputLockKit are documented here. This project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-07-12
+
+### Added
+- **Project Settings page** — *Edit ▸ Project Settings ▸ Input Lock* (also *Tools ▸ Input Lock ▸
+  Settings*, and a Settings button in the debugger): create/assign and inline-edit a **tag catalog**,
+  toggle auto-register, and install the AI skill.
+- `InputLockSettings` (a `Resources` asset) + a `BeforeSceneLoad` bootstrap that registers the
+  configured catalog into `InputLockRuntime.Catalog`, so **catalog tags are known to every service,
+  `LockAll` and the debugger automatically** — no manual wiring. Every new `InputLockService` picks it up.
+- One-click **"Add AI Skill to .claude/skills"** (the Claude skill is bundled in the package under
+  `AISkill~/`).
+- **`[InputLockTag]` / `[InputLockGroup]` attributes** — decorate a serialized `string` /
+  `List<string>` to draw it as a catalog-backed **dropdown** with *Add New…* (adds to the catalog) and
+  *Open Tag Catalog…*. Applied to the lockable Tags and Group fields.
+- The **catalog is now the authoritative, self-populating list of tags *and* reusable groups**: any
+  tag or group used on a lockable is added to the catalog automatically (on edit), plus a *Collect Tags
+  & Groups Used In Project* action in settings to backfill existing content. Catalog groups are interned
+  at load alongside tags.
+
+### Changed
+- Debugger menu moved from `Kobapps ▸ Input Lock ▸ Debugger` to **`Tools ▸ Input Lock ▸ Debugger`**
+  (removes the top-level "Kobapps" menu).
+- Example controllers now demonstrate the new fields: `[InputLockTag]` on the basic/tutorial/custom
+  examples' tag fields and `[InputLockGroup]` on the grid example's group; the example catalog is
+  seeded with those tags (`Panel`, `Play`, `Shop`, `Settings`, `Quit`, `Gameplay`) and the `Grid` group.
+
 ## [1.1.0] — 2026-07-11
 
 ### Added
@@ -51,4 +77,6 @@ All notable changes to InputLockKit are documented here. This project adheres to
 - Three importable samples: Basic UI Lock, Tutorial Gating, Custom Extensions.
 - BMAD planning docs (brief, PRD, architecture, epics/stories) under `Documentation~/bmad/`.
 
+[1.2.0]: https://github.com/Kobapps/InputLockKit/releases/tag/v1.2.0
+[1.1.0]: https://github.com/Kobapps/InputLockKit/releases/tag/v1.1.0
 [1.0.0]: https://github.com/Kobapps/InputLockKit/releases/tag/v1.0.0

@@ -54,6 +54,12 @@ namespace Kobapps.InputLockKit
             _adapter = adapter ?? NullInputLockStateAdapter.Instance;
             _hasStateAdapter = adapter != null && !(adapter is NullInputLockStateAdapter);
             RegisterTag(InputLockTag.Default);
+
+            // Pick up the project-configured catalog so its tags are known to every service.
+            if (InputLockRuntime.Catalog != null)
+            {
+                RegisterCatalog(InputLockRuntime.Catalog);
+            }
         }
 
         public event Action<InputLockTag, bool> TagStateChanged;

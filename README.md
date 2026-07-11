@@ -110,7 +110,7 @@ handy when a tutorial must stay gated after a relogin. Wire it via the **Input L
 Installer** component or `new InputLockService(adapter)`.
 
 ## Editor tooling
-**Kobapps ▸ Input Lock ▸ Debugger** — a live window showing every tag, its locked state and
+**Tools ▸ Input Lock ▸ Debugger** — a live window showing every tag, its locked state and
 reference count, who owns each lock, which components it drives, plus toggles, an ad-hoc tag injector,
 and a rolling event log.
 

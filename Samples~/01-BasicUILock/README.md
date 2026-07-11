@@ -8,7 +8,7 @@ and use a disposable `using (InputLock.All())` scope for a temporary full lock.
 2. Add an empty GameObject and put **BasicUILockDemo** on it (or menu
    *Kobapps ▸ Input Lock ▸ Samples ▸ Basic UI Lock Demo*).
 3. Press Play. The demo builds its own UI.
-4. Open **Kobapps ▸ Input Lock ▸ Debugger** to watch the `Panel` tag lock/unlock live.
+4. Open **Tools ▸ Input Lock ▸ Debugger** to watch the `Panel` tag lock/unlock live.
 
 ## What to look at
 - `InputLock.Lock("Panel")` returns a handle; disposing it unlocks.

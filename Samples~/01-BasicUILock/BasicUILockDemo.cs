@@ -11,7 +11,7 @@ namespace Kobapps.InputLockKit.Samples
     ///   • Lock / unlock a specific tag ("Panel").
     ///   • A <see cref="CanvasGroupLock"/> reacting to that tag with no glue code.
     ///   • A scoped "lock everything" using a disposable handle in a coroutine.
-    /// Open <b>Kobapps ▸ Input Lock ▸ Debugger</b> while playing to watch it live.
+    /// Open <b>Tools ▸ Input Lock ▸ Debugger</b> while playing to watch it live.
     /// </summary>
     [AddComponentMenu("Kobapps/Input Lock/Samples/Basic UI Lock Demo")]
     public sealed class BasicUILockDemo : MonoBehaviour

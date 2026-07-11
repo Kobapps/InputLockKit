@@ -5,34 +5,26 @@ using UnityEngine;
 namespace Kobapps.InputLockKit.Editor
 {
     /// <summary>
-    /// Custom inspector shared by every <see cref="InputLockableBehaviour"/>. Adds a one-click "add
-    /// tag from catalog" dropdown on top of the raw tag list and a live locked/unlocked status readout
-    /// while playing.
+    /// Custom inspector shared by every <see cref="InputLockableBehaviour"/>. Tag fields render as
+    /// catalog-backed dropdowns (via <c>[InputLockTag]</c>); any tag used here is added to the catalog
+    /// automatically. Also shows a live locked/unlocked readout while playing.
     /// </summary>
     [CustomEditor(typeof(InputLockableBehaviour), editorForChildClasses: true)]
     [CanEditMultipleObjects]
     public sealed class InputLockableBehaviourEditor : UnityEditor.Editor
     {
-        private SerializedProperty _tags;
-
-        private void OnEnable()
-        {
-            _tags = serializedObject.FindProperty("_tags");
-        }
-
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-
+            EditorGUI.BeginChangeCheck();
             DrawPropertiesExcluding(serializedObject, "m_Script");
-
-            EditorGUILayout.Space(4f);
-            if (_tags != null && GUILayout.Button("Add Tag From Catalog ▾"))
-            {
-                ShowCatalogMenu();
-            }
-
+            var changed = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
+
+            if (changed)
+            {
+                SyncToCatalog();
+            }
 
             if (Application.isPlaying && target is InputLockableBehaviour lockable)
             {
@@ -46,60 +38,32 @@ namespace Kobapps.InputLockKit.Editor
             }
         }
 
-        private void ShowCatalogMenu()
+        private void SyncToCatalog()
         {
-            var menu = new GenericMenu();
-            var added = new HashSet<string>();
-
-            foreach (var name in CollectCatalogTagNames())
+            var tags = new List<string>();
+            var groups = new List<string>();
+            foreach (var obj in targets)
             {
-                if (!added.Add(name))
+                if (!(obj is InputLockableBehaviour lockable))
                 {
                     continue;
                 }
 
-                var captured = name;
-                menu.AddItem(new GUIContent(captured), false, () => AppendTag(captured));
-            }
-
-            if (menu.GetItemCount() == 0)
-            {
-                menu.AddDisabledItem(new GUIContent("No InputLockTagCatalog assets found"));
-            }
-
-            menu.ShowAsContext();
-        }
-
-        private static IEnumerable<string> CollectCatalogTagNames()
-        {
-            var guids = AssetDatabase.FindAssets("t:" + nameof(InputLockTagCatalog));
-            foreach (var guid in guids)
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                var catalog = AssetDatabase.LoadAssetAtPath<InputLockTagCatalog>(path);
-                if (catalog == null)
+                var lockableTags = lockable.Tags;
+                for (var i = 0; i < lockableTags.Count; i++)
                 {
-                    continue;
+                    tags.Add(lockableTags[i]);
                 }
 
-                var entries = catalog.Entries;
-                for (var i = 0; i < entries.Count; i++)
+                var group = lockable.Group;
+                if (group.IsValid)
                 {
-                    if (!string.IsNullOrEmpty(entries[i].Name))
-                    {
-                        yield return entries[i].Name;
-                    }
+                    groups.Add(group.Name);
                 }
             }
-        }
 
-        private void AppendTag(string name)
-        {
-            serializedObject.Update();
-            var index = _tags.arraySize;
-            _tags.InsertArrayElementAtIndex(index);
-            _tags.GetArrayElementAtIndex(index).stringValue = name;
-            serializedObject.ApplyModifiedProperties();
+            InputLockEditorAssets.EnsureTags(tags);
+            InputLockEditorAssets.EnsureGroups(groups);
         }
     }
 }

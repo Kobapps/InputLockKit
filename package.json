@@ -1,6 +1,6 @@
 {
   "name": "com.kobapps.inputlockkit",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "displayName": "InputLockKit",
   "description": "AAA-grade, zero-allocation, tag-based input locking for Unity. Lock and unlock player input from anywhere with disposable handles, ref-counted tags, reactive UI/gameplay components, a pluggable per-game state adapter, and a live editor debugger. Standalone — no third-party dependencies.",
   "unity": "6000.0",

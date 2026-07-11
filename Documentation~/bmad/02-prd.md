@@ -18,7 +18,7 @@ release. Every lock returns a disposable handle scoped to its owner.
   `InputLock.AllExcept(tutorialTag)` so the rest of the UI is inert.
 - **As a UI engineer**, I drop a `CanvasGroupLock` on a panel, pick its tags in the inspector,
   and it disables itself whenever any of those tags is locked — no code.
-- **As a tools engineer**, I open *Kobapps ▸ Input Lock ▸ Debugger*, see which tags are locked,
+- **As a tools engineer**, I open *Tools ▸ Input Lock ▸ Debugger*, see which tags are locked,
   who owns each lock, which components are affected, and toggle locks live.
 - **As a systems engineer**, I implement `IInputLockStateAdapter` so active locks survive a
   save/reload (e.g., a tutorial re-locks input after relogin).

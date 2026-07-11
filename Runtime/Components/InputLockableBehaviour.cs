@@ -22,10 +22,12 @@ namespace Kobapps.InputLockKit
     public abstract class InputLockableBehaviour : MonoBehaviour
     {
         [SerializeField]
+        [InputLockTag]
         [Tooltip("Tags this component listens to. It locks when any of these is locked.")]
         private List<string> _tags = new List<string> { "Default" };
 
         [SerializeField]
+        [InputLockGroup]
         [Tooltip("Optional group this lockable belongs to. Lets the service lock the whole group, the " +
                  "group-except-a-selection, or just a selection (e.g. grid cells).")]
         private string _group;
