@@ -1,0 +1,12 @@
+{
+    "name": "Kobapps.InputLockKit.Samples.BasicUILock",
+    "rootNamespace": "Kobapps.InputLockKit.Samples",
+    "references": [
+        "Kobapps.InputLockKit",
+        "Kobapps.InputLockKit.UI",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "autoReferenced": true
+}

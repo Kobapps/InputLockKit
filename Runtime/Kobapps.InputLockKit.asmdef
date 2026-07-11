@@ -1,0 +1,14 @@
+{
+    "name": "Kobapps.InputLockKit",
+    "rootNamespace": "Kobapps.InputLockKit",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

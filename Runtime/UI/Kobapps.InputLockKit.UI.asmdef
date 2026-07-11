@@ -1,0 +1,17 @@
+{
+    "name": "Kobapps.InputLockKit.UI",
+    "rootNamespace": "Kobapps.InputLockKit.UI",
+    "references": [
+        "Kobapps.InputLockKit",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
